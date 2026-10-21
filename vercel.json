@@ -1,1 +1,1 @@
-{"functions":{"api/index.js":{"maxDuration":60}},"rewrites":[{"source":"/api/:path*","destination":"/api/index"}]}
+{"functions":{"api/index.js":{"maxDuration":240,"includeFiles":"{fixtures,public}/**"}},"rewrites":[{"source":"/api/:path*","destination":"/api/index"}]}
