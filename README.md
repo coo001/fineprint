@@ -36,7 +36,7 @@ Guards around the models, enforced in code:
 
 Tavily: when `TAVILY_API_KEY` is set, pages are read with the Tavily Extract API (`/extract`, advanced depth); otherwise they are fetched directly.
 
-A real three-tier run completed on 21 Oct 2026 over two saved official excerpts. Nano extracted the rules, Super checked the entry and Ultra reviewed conflicts. Actual call-level tokens and latency are shown in the included recorded LIVE report. This validates the API pipeline, not a full benchmark or a full-site crawl.
+A real three-tier public-deployment run completed on 21 Oct 2026 over all three retrieved official pages: 91 of 94 extracted quotations matched source text. The uploaded record includes 10 Nano calls, one Super call and one Ultra call. Nano extracted the rules, Super checked the entry and Ultra reviewed conflicts. Actual call-level tokens and latency are shown in the included recorded LIVE report. This validates the API pipeline and full-page retrieval, not an accuracy or coverage benchmark.
 
 ## Run it
 
@@ -45,7 +45,7 @@ Requires Node.js 20 or newer. The optional public deployment uses @vercel/blob f
 ```bash
 cp .env.example .env      # add NEBIUS_API_KEY (and optionally TAVILY_API_KEY)
 npm start                 # http://127.0.0.1:3456
-npm test                  # 40 tests, no model calls needed
+npm test                  # 41 tests, no model calls needed
 ```
 
 CLI:
@@ -92,4 +92,4 @@ Set VERCEL=1 or FINEPRINT_PUBLIC=1, NEBIUS_API_KEY, FINEPRINT_ENABLE_LIVE=1, FIN
 
 ## Verification
 
-The 39-test suite includes the original pipeline tests plus SSRF rejection, input/time limits, gate enforcement, budget exhaustion, CAS conflicts, restart persistence and truncated-JSON handling. The actual private Blob store adapter was checked with no inference calls; create, get/stream/ETag, conditional updates, rejection of a stale ETag and restart persistence passed.
+The 41-test suite includes the original pipeline tests plus SSRF rejection, input/time limits, gate enforcement, budget exhaustion, CAS conflicts, restart persistence and truncated-JSON handling. The actual private Blob store adapter was checked with no inference calls; create, get/stream/ETag, conditional updates, rejection of a stale ETag and restart persistence passed.

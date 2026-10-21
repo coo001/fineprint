@@ -73,6 +73,7 @@ blockquote{margin:4px 0 0;padding:4px 10px;border-left:3px solid var(--line);col
   </div>
 </section>
 </main>
+<footer class="muted" style="max-width:1448px;margin:0 auto;padding:0 26px 20px">Assistive check, not legal advice or a completeness guarantee. Matching a quote does not prove a correct interpretation. Source-specific requirements can repeat the same obligation. Official rules remain binding.</footer>
 <script>
 const $=(id)=>document.getElementById(id);
 const esc=(s)=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -104,6 +105,8 @@ $('run').onclick=async()=>{
 };
 function render(){
   const r=report;$('out').classList.remove('hidden');$('mode').textContent=r.mode+' MODE';$('mode').className='badge '+r.mode;
+  $('models').innerHTML=`fast <span class="chip">${esc(r.models.fast)}</span> mid <span class="chip mid">${esc(r.models.mid)}</span> deep <span class="chip deep">${esc(r.models.deep)}</span> · ${r.mode==='LIVE'?'Actual Nebius inference · source fetching: '+(r.sources.some(s=>s.via==='tavily-extract')?'Tavily':'direct fetch'):'Offline stand-ins, not actual inference'}`;
+  $('usage').title='Model latency is summed per tier; parallel-call sums are not wall-clock runtime.';
   $('usage').innerHTML='Usage: '+r.usage.map(u=>`<span class="chip ${u.tier}">${u.tier}: ${u.calls} call(s), ${u.promptTokens+u.completionTokens} tokens</span>`).join(' ')+(r.mode==='MOCK'?' <b>(MOCK — estimated, no model was called)</b>':'');
   $('verdict').textContent=r.verdict;
   const unv=r.requirements.filter(q=>!q.quoteVerified).length;

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-21T13:13:57.799Z",
+  "generatedAt": "2026-10-21T13:49:10.876Z",
   "mode": "LIVE",
   "models": {
     "fast": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
@@ -10,14 +10,20 @@
     {
       "id": "S1",
       "url": "https://nebiusglobalaihackathon.devpost.com/rules",
-      "via": "saved-official-excerpt",
-      "chars": 372
+      "via": "direct-fetch",
+      "chars": 35279
     },
     {
       "id": "S2",
+      "url": "https://nebiusglobalaihackathon.devpost.com/",
+      "via": "direct-fetch",
+      "chars": 7305
+    },
+    {
+      "id": "S3",
       "url": "https://nebiusglobalaihackathon.devpost.com/resources",
-      "via": "saved-official-excerpt",
-      "chars": 393
+      "via": "direct-fetch",
+      "chars": 2008
     }
   ],
   "deadline": {
@@ -30,8 +36,8 @@
     {
       "category": "deadline",
       "kind": "hard",
-      "requirement": "Submit before October 30, 2026 at 10:00 am Pacific Time",
-      "quote": "Submission Period: Wednesday, August 26, 2026 (9:00 am Pacific Time) – Friday, October 30, 2026 (10:00 am Pacific Time) (“Submission Period”).",
+      "requirement": "Submit your entry by October 30, 2026 at 10:00am PDT",
+      "quote": "Deadline: Oct 30, 2026 @ 10:00am PDT",
       "source": "S1",
       "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
       "quoteVerified": true,
@@ -39,16 +45,16 @@
       "id": "R01",
       "result": {
         "id": "R01",
-        "status": "action",
-        "reason": "No submission timestamp provided in evidence to verify if submitted before October 30, 2026 at 10:00 am Pacific Time.",
-        "fix": "Provide submission timestamp."
+        "status": "pass",
+        "reason": "Repo pushed at 2026-10-21T13:45:45Z, before deadline Oct 30, 2026 10:00am PDT.",
+        "fix": ""
       }
     },
     {
-      "category": "repository",
+      "category": "eligibility",
       "kind": "hard",
-      "requirement": "Make the repository public and open source with a detectable license file",
-      "quote": "The repository must be public and open source by including an open source license file (such as Apache 2.0, MIT, or MPL 2.0). This license should be detectable and visible at the top of the repository page (in the About section).",
+      "requirement": "Entrants must be at least the age of majority in their jurisdiction",
+      "quote": "Individuals who are at least the age of majority where they reside as of the time of entry",
       "source": "S1",
       "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
       "quoteVerified": true,
@@ -56,45 +62,1469 @@
       "id": "R02",
       "result": {
         "id": "R02",
-        "status": "fail",
-        "reason": "Repository not provided (provided: false), so cannot be public or have a detectable license file.",
-        "fix": "Provide a public repository URL with an open source license file (e.g., MIT, Apache 2.0) visible in the About section."
+        "status": "action",
+        "reason": "No evidence about entrant's age or age of majority.",
+        "fix": "Confirm entrant is at least age of majority in their jurisdiction."
       }
     },
     {
       "category": "eligibility",
-      "kind": "soft",
-      "requirement": "Submit your project to be considered for the City Winner Award",
-      "quote": "all eligible submissions associated with a participating city will be considered",
-      "source": "S2",
-      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/resources",
+      "kind": "hard",
+      "requirement": "Teams of eligible individuals are allowed",
+      "quote": "Teams of Eligible Individuals",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
       "quoteVerified": true,
       "quoteScore": 1,
       "id": "R03",
       "result": {
         "id": "R03",
         "status": "action",
-        "reason": "City not specified in evidence (city: null), so cannot determine eligibility for City Winner Award.",
-        "fix": "Specify the participating city associated with the submission."
+        "reason": "No evidence about team structure or multiple members.",
+        "fix": "Specify if entry is individual or team; if team, confirm all members eligible."
       }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Organizations may enter if they are legally organized",
+      "quote": "Organizations (including corporations, not-for-profit corporations and other nonprofit organizations, limited liability companies, partnerships, and other legal entities)",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R04",
+      "result": {
+        "id": "R04",
+        "status": "action",
+        "reason": "No evidence about organizational status or legal entity.",
+        "fix": "Confirm if entering as individual, team, or organization; if organization, verify legal standing."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Residents of prohibited jurisdictions are not eligible",
+      "quote": "The Hackathon IS NOT open to individuals who are residents of, or Organizations domiciled in, a country, state, province or territory where the laws of the United States or local law prohibits participating or receiving a prize in the Hackathon (including, but not limited to, Brazil, Quebec, Russia, Crimea, Cuba, Iran, and North Korea and any other country which is comprehensively sanctioned by the U.S. Treasury’s Office of Foreign Assets Control)",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 0.99,
+      "id": "R05",
+      "result": {
+        "id": "R05",
+        "status": "action",
+        "reason": "No evidence about entrant's jurisdiction or residency.",
+        "fix": "Confirm entrant is not resident of prohibited jurisdictions (Brazil, Quebec, Russia, etc.)."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Employees and contractors of Promotion Entities are ineligible",
+      "quote": "The Hackathon IS NOT open to Organizations involved with the design, production, paid promotion, execution, or distribution of the Hackathon, including the Sponsor and Administrator (“Promotion Entities”).",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": false,
+      "quoteScore": 0.69,
+      "id": "R06",
+      "result": null
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Judges and their immediate families are ineligible",
+      "quote": "Any Judge (defined below), or company or individual that employs a Judge",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R07",
+      "result": {
+        "id": "R07",
+        "status": "action",
+        "reason": "No evidence about entrant being a judge or affiliated with judges.",
+        "fix": "Confirm entrant is not a judge and has no immediate family who are judges."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Affiliates of prohibited entities are ineligible",
+      "quote": "Any other individual or organization whose participation in the Hackathon would create, in the sole discretion of the Sponsor and/or Administrator, a real or apparent conflict of interest",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R08",
+      "result": {
+        "id": "R08",
+        "status": "action",
+        "reason": "No evidence about affiliations creating conflict of interest.",
+        "fix": "Confirm no affiliation that would create real/apparent conflict with Sponsor/Admin."
+      }
+    },
+    {
+      "category": "repository",
+      "kind": "hard",
+      "requirement": "Submit a working software application that runs on Nebius Token Factory or Nebius AI Cloud",
+      "quote": "Runs on Nebius Token Factory or Nebius AI Cloud means the project makes a runtime call to the Token Factory inference API, or is deployed/run using Nebius AI Cloud compute (Serverless Jobs, Serverless Endpoints, or DevPods).",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R09",
+      "result": {
+        "id": "R09",
+        "status": "pass",
+        "reason": "Repo mentions tokenFactory and nebius; description confirms use of NVIDIA Nemotron on Nebius Token Factory.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "video",
+      "kind": "soft",
+      "requirement": "Provide a demo video of your submission",
+      "quote": "Demo videos are optional but highly encouraged.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": false,
+      "quoteScore": 0.14,
+      "id": "R10",
+      "result": null
+    },
+    {
+      "category": "description",
+      "kind": "soft",
+      "requirement": "Describe your project in the submission form",
+      "quote": "Entrants will obtain access to the required developer tools/platform and complete a Project described below in Project Requirements.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R11",
+      "result": {
+        "id": "R11",
+        "status": "pass",
+        "reason": "Description field contains 139 chars of project description in submission form.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "language",
+      "kind": "info",
+      "requirement": "Submit during the submission period",
+      "quote": "Submission Period: Wednesday, August 26, 2026 (9:00 am Pacific Time) – Friday, October 30, 2026 (10:00 am Pacific Time)",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R12",
+      "result": null
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "Prize details are provided separately",
+      "quote": "Winners Announced: On or around Monday, January 11, 2027 (12:00 pm Pacific Time).",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R13",
+      "result": null
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Submit a unique project that is either newly created or significantly updated during the submission period",
+      "quote": "Projects must be either newly created by the Entrant or, if the Entrant’s Project existed prior to the Hackathon Submission Period, must have been significantly updated after the start of the Hackathon Submission Period.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R14",
+      "result": {
+        "id": "R14",
+        "status": "pass",
+        "reason": "Repo created 2026-10-21 during submission period; no evidence of prior existence, so newly created.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "deadline",
+      "kind": "info",
+      "requirement": "Submit before the hackathon deadline",
+      "quote": "Submission Requirements",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R15",
+      "result": null
+    },
+    {
+      "category": "repository",
+      "kind": "hard",
+      "requirement": "Provide a public code repository with all source code, assets, and instructions",
+      "quote": "Provide a URL to your public code repository for judging and testing on either GitHub, GitLab or Bitbucket.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R16",
+      "result": {
+        "id": "R16",
+        "status": "pass",
+        "reason": "Public GitHub repo provided: coo001/fineprint, reachable and public.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "repository",
+      "kind": "hard",
+      "requirement": "Repository must include an open source license file at the top",
+      "quote": "The repository must contain all necessary source code, assets, and instructions required for the project to be functional.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R17",
+      "result": {
+        "id": "R17",
+        "status": "pass",
+        "reason": "Repo includes MIT license file at top level.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "repository",
+      "kind": "hard",
+      "requirement": "Repository must include a README with setup instructions",
+      "quote": "Include a README with setup instructions and clear guidance for running your project.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R18",
+      "result": {
+        "id": "R18",
+        "reason": "Repo readme has 7260 chars and mentions 'setup', indicating setup instructions.",
+        "status": "pass",
+        "fix": ""
+      }
+    },
+    {
+      "category": "description",
+      "kind": "hard",
+      "requirement": "Include a text description of features and functionality",
+      "quote": "Include a text description that should explain the features and functionality of your Project.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R19",
+      "result": {
+        "id": "R19",
+        "status": "pass",
+        "reason": "Description field provides 139 chars of text describing features/functionality.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "video",
+      "kind": "hard",
+      "requirement": "Upload a demonstration video under 3 minutes to YouTube",
+      "quote": "The video portion of the Submission: should be less than three (3) minutes.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R20",
+      "result": {
+        "id": "R20",
+        "status": "fail",
+        "reason": "Video not provided; required demo video under 3 minutes missing.",
+        "fix": "Upload a public YouTube video <3 min showing project functioning."
+      }
+    },
+    {
+      "category": "video",
+      "kind": "hard",
+      "requirement": "Video must show the project functioning on its target device",
+      "quote": "should include footage that shows the Project functioning on the device for which it was built",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R21",
+      "result": {
+        "id": "R21",
+        "status": "action",
+        "reason": "No video provided to verify functioning on target device.",
+        "fix": "Upload video showing project functioning on its target device."
+      }
+    },
+    {
+      "category": "video",
+      "kind": "hard",
+      "requirement": "Physical AI track must include at least 1 minute of hardware operation footage",
+      "quote": "for Physical AI Track submissions, should include at least one minute of footage showing the physical hardware/robot actually operating, or — if the Project has no physical hardware component — the key application modules in action.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R22",
+      "result": {
+        "id": "R22",
+        "status": "action",
+        "reason": "Track is Best Apps and Agents (not Physical AI), so hardware footage not required; but no video provided at all.",
+        "fix": "Upload video; if Physical AI track, include ≥1 min hardware operation."
+      }
+    },
+    {
+      "category": "track",
+      "kind": "hard",
+      "requirement": "Identify which track you are submitting into",
+      "quote": "Identify which track you are submitting your Project into.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R23",
+      "result": {
+        "id": "R23",
+        "status": "pass",
+        "reason": "Track identified as 'Best Apps and Agents' in evidence.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "feedback",
+      "kind": "soft",
+      "requirement": "Provide feedback on Nebius Token Factory, AI Cloud, and NVIDIA tools used",
+      "quote": "Include feedback on Nebius Token Factory, AI Cloud and any NVIDIA tools, models, or technologies used.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 0.94,
+      "id": "R24",
+      "result": {
+        "id": "R24",
+        "status": "pass",
+        "reason": "Feedback provided on Nebius Token Factory, AI Cloud, and NVIDIA tools per evidence.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "other",
+      "kind": "hard",
+      "requirement": "Obtain authorization for any third-party SDKs, APIs, or data used",
+      "quote": "If a Project integrates any third-party SDK, APIs and/or data, Entrant must be authorized to use them in accordance with any terms and conditions or licensing requirements of the tool.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R25",
+      "result": {
+        "id": "R25",
+        "status": "action",
+        "reason": "No evidence about third-party SDK/API/data usage or authorization.",
+        "fix": "Confirm authorization for any third-party SDKs, APIs, or data used."
+      }
+    },
+    {
+      "category": "ip",
+      "kind": "hard",
+      "requirement": "Project must be original work owned solely by the entrant",
+      "quote": "Be the original work of the Entrant, be solely owned by the Entrant, and not violate the IP rights of any other person or entity.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R26",
+      "result": {
+        "id": "R26",
+        "status": "action",
+        "reason": "No evidence about IP ownership or original work verification.",
+        "fix": "Confirm project is original work owned solely by entrant/team."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Appoint a Representative who meets eligibility requirements",
+      "quote": "If a team or organization is entering the Hackathon, they must appoint and authorize one individual (the “Representative”) to represent, act, and enter a Submission, on their behalf.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R27",
+      "result": {
+        "id": "R27",
+        "status": "action",
+        "reason": "No evidence about representative appointment for team/org.",
+        "fix": "If team or organization, appoint and authorize eligible representative."
+      }
+    },
+    {
+      "category": "deadline",
+      "kind": "hard",
+      "requirement": "Submit before the end of the Submission Period",
+      "quote": "Prior to the end of the Submission Period, you may save draft versions of your submission on Devpost to your portfolio before submitting the Submission materials to the Hackathon for evaluation.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R28",
+      "result": {
+        "id": "R28",
+        "status": "pass",
+        "reason": "Repo pushed 2026-10-21, before submission period end (implied by deadline Oct 30, 2026).",
+        "fix": ""
+      }
+    },
+    {
+      "category": "technology",
+      "kind": "hard",
+      "requirement": "Make Project available free of charge without restriction for testing",
+      "quote": "The Entrant must make the Project available free of charge and without any restriction, for testing, evaluation and use by the Sponsor, Administrator and Judges until the Judging Period ends.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R29",
+      "result": {
+        "id": "R29",
+        "status": "action",
+        "reason": "No evidence project is made freely available for testing without restriction.",
+        "fix": "Confirm project is available free of charge without restriction for testing/judging."
+      }
+    },
+    {
+      "category": "repository",
+      "kind": "hard",
+      "requirement": "Provide a link to a website, functioning demo, or test build",
+      "quote": "Access must be provided to an Entrant’s working Project for judging and testing by providing a link to a website, functioning demo, or a test build.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R30",
+      "result": {
+        "id": "R30",
+        "status": "pass",
+        "reason": "Demo provided and reachable (status 200), offering access to working project.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "video",
+      "kind": "hard",
+      "requirement": "Include a demonstration video in English or with English translation",
+      "quote": "All Submission materials must be in English or, if not in English, the Entrant must provide an English translation of the demonstration video, text description, and testing instructions as well as all other materials submitted.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R31",
+      "result": {
+        "id": "R31",
+        "status": "action",
+        "reason": "No video provided to verify language or need for English translation.",
+        "fix": "Provide video in English or with English translation; ensure all materials English."
+      }
+    },
+    {
+      "category": "judging",
+      "kind": "hard",
+      "requirement": "Judges may evaluate based on description, images, and video only",
+      "quote": "Judges are not required to test the Project and may choose to judge based solely on the text description, images, and video provided in the Submission.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R32",
+      "result": {
+        "id": "R32",
+        "status": "manual",
+        "reason": "Model returned no result for this item.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "Disqualification possible if prize creates conflict of interest",
+      "quote": "The Sponsor, at their sole discretion, may disqualify a Project, if awarding a prize to the Project would create a real or apparent conflict of interest.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R33",
+      "result": null
+    },
+    {
+      "category": "ip",
+      "kind": "hard",
+      "requirement": "Submission must be original work owned solely by Entrant or team",
+      "quote": "Your Submission must: (a) be your (or your Team, or Organization’s) original work product; (b) be solely owned by you, your Team, your Organization with no other person or entity having any right or interest in it;",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R34",
+      "result": {
+        "id": "R34",
+        "status": "action",
+        "reason": "No evidence submission is original work owned solely by entrant/team/org.",
+        "fix": "Confirm submission is original work solely owned by entrant/team with no third-party IP rights."
+      }
+    },
+    {
+      "category": "track",
+      "kind": "info",
+      "requirement": "Project must fit the hackathon theme",
+      "quote": "A Project reasonably fits the theme if it is a genuine attempt at the track's stated goal, not a superficial rebrand of an unrelated idea.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R35",
+      "result": null
+    },
+    {
+      "category": "other",
+      "kind": "hard",
+      "requirement": "Do not use Sponsor/Administrator funded projects",
+      "quote": "A Project must not have been developed, or derived from a Project developed, with financial or preferential support from the Sponsor or Administrator.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R36",
+      "result": {
+        "id": "R36",
+        "status": "action",
+        "reason": "No evidence about project derivation from Sponsor/Admin-funded work.",
+        "fix": "Confirm project not developed with financial/preferential support from Sponsor/Admin."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Submit a submission to be eligible for any prize",
+      "quote": "All Submissions remain the intellectual property of the individuals or organizations that developed them.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R37",
+      "result": {
+        "id": "R37",
+        "status": "action",
+        "reason": "No explicit evidence of submission for prize eligibility (though implied by entry).",
+        "fix": "Confirm submission made to be eligible for any prize."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Submit a submission to be eligible for any prize",
+      "quote": "Entrants agree that the sponsor and Devpost shall have the right to promote the Submission and use the name, likeness, voice and image of all individuals contributing to a Submission, in any materials promoting or publicizing the Hackathon and its results, during the Hackathon Period and for three years thereafter.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R38",
+      "result": {
+        "id": "R38",
+        "status": "action",
+        "reason": "No evidence about agreement to sponsor/Devpost promotion rights.",
+        "fix": "Confirm agreement to sponsor/Devpost using name/likeness for promotion."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Submit a submission to be eligible for any prize",
+      "quote": "By submitting an entry or accepting any prize, entrants represent and warrant that (a) submitted content is not copyrighted, protected by trade secret or otherwise subject to third party intellectual property rights or other proprietary rights, including privacy and publicity rights, unless entrant is the owner of such rights or has permission from their rightful owner to post the content; and (b) the content submitted does not contain any viruses, Trojan horses, worms, spyware or other disabling devices or harmful or malicious code.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R39",
+      "result": {
+        "id": "R39",
+        "status": "action",
+        "reason": "No evidence about warranty regarding IP, malware, or harmful code.",
+        "fix": "Confirm submitted content is non-infringing and free of viruses/malicious code."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Submit a submission to be eligible for any prize",
+      "quote": "THE AWARD OF A PRIZE TO A POTENTIAL WINNER IS SUBJECT TO VERIFICATION OF THE IDENTITY, QUALIFICATIONS AND ROLE OF THE POTENTIAL WINNER IN THE CREATION OF THE SUBMISSION.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R40",
+      "result": {
+        "id": "R40",
+        "status": "action",
+        "reason": "No evidence about identity/qualifications verification readiness.",
+        "fix": "Prepare to verify identity/qualifications/role if selected as potential winner."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Submit a submission to be eligible for any prize",
+      "quote": "No Submission or Entrant shall be deemed a winning Submission or winner until their post-competition prize affidavits have been completed and verified, even if prospective winners have been announced verbally or on the competition website.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R41",
+      "result": {
+        "id": "R41",
+        "status": "action",
+        "reason": "No evidence about post-competition prize affidavit readiness.",
+        "fix": "Agree to complete/post-competition prize affidavits if selected as winner."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Submit a submission to be eligible for any prize",
+      "quote": "The final decision to designate a winner shall be made by the Sponsor and/or Administrator.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R42",
+      "result": {
+        "id": "R42",
+        "status": "action",
+        "reason": "No evidence about understanding final winner designation by Sponsor/Admin.",
+        "fix": "Acknowledge final winner decision rests solely with Sponsor and/or Administrator."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Submit a submission to be eligible for any prize",
+      "quote": "Each Project is eligible for one (1) Overall Award OR one (1) Track Award and one (1) Bonus Award.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R43",
+      "result": {
+        "id": "R43",
+        "status": "action",
+        "reason": "No evidence about prize eligibility limits (1 Overall/Track/Bonus max).",
+        "fix": "Understand each project eligible for max 1 Overall OR 1 Track + 1 Bonus Award."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Submit a submission to be eligible for any prize",
+      "quote": "Prizes are non-transferable by the winner.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R44",
+      "result": {
+        "id": "R44",
+        "status": "action",
+        "reason": "No evidence about prize non-transferability understanding.",
+        "fix": "Acknowledge prizes are non-transferable by winner."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Submit a submission to be eligible for any prize",
+      "quote": "Sponsor in its sole discretion has the right to make a prize substitution of equivalent or greater value.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R45",
+      "result": {
+        "id": "R45",
+        "status": "action",
+        "reason": "No evidence about sponsor's prize substitution right awareness.",
+        "fix": "Understand sponsor may substitute prize with equivalent/greater value."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Submit a submission to be eligible for any prize",
+      "quote": "Sponsor will not award a prize if there are no eligible Submissions entered in the Hackathon, or if there are no eligible Entrants or Submissions for a specific prize.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R46",
+      "result": {
+        "id": "R46",
+        "status": "action",
+        "reason": "No evidence about prize award contingency on eligible submissions.",
+        "fix": "Understand sponsor won't award prize if no eligible submissions/entrants."
+      }
+    },
+    {
+      "category": "deadline",
+      "kind": "info",
+      "requirement": "Submit before the hackathon ends",
+      "quote": "during the Hackathon Period",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R47",
+      "result": null
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "Grand Prize is $20,000 USD",
+      "quote": "Grand Prize\n-\n$20,000 USD",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R48",
+      "result": null
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "2nd Place is $10,000 USD",
+      "quote": "2nd Place\n-\n$10,000 USD",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R49",
+      "result": null
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "3rd Place is $6,000 USD",
+      "quote": "3rd Place\n-\n$6,000 USD",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R50",
+      "result": null
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "Track awards include NVIDIA Jetson Orin Nano",
+      "quote": "Track Awards\nCoding and Agentic Engineering Track Winner\n-\nNVIDIA Jetson Orin Nano",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R51",
+      "result": null
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "Bonus award Best Use of Tavily is $3,000 USD",
+      "quote": "Bonus Awards\nBest Use of Tavily\n-\n$3,000 USD",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R52",
+      "result": null
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "City Winner Awards are $500 USD each",
+      "quote": "City Winner Awards\n-\n$500 USD",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R53",
+      "result": null
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "Most Valuable Feedback award is $100 USD plus NVIDIA swag pack",
+      "quote": "Most Valuable Feedback\n-\n$100 USD\nNVIDIA swag pack",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R54",
+      "result": null
+    },
+    {
+      "category": "prize",
+      "kind": "hard",
+      "requirement": "Submit required forms within ten business days of receipt",
+      "quote": "The deadline for returning the Required Forms to the Administrator is ten (10) business days after the Required Forms are sent . Failure to provide correct information on the Required Forms, or other correct information required for the delivery of a Prize, may result in delayed Prize delivery, disqualification of the Entrant, or forfeiture of a Prize.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R55",
+      "result": {
+        "id": "R55",
+        "status": "action",
+        "reason": "No evidence about forms submission timeline understanding.",
+        "fix": "Agree to return required forms within 10 business days of receipt."
+      }
+    },
+    {
+      "category": "prize",
+      "kind": "hard",
+      "requirement": "Provide tax forms to receive prize",
+      "quote": "Winners (and in the case of Team or Organization, all participating members) are responsible for reporting and paying all applicable taxes in their jurisdiction of residence (federal, state/provincial/territorial and local). Winners may be required to provide certain information to facilitate receipt of the award, including completing and submitting any tax or other forms necessary for compliance with applicable withholding and reporting requirements. United States residents may be required to provide a completed form W-9 and residents of other countries may be required to provide a completed W-8BEN form.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R56",
+      "result": {
+        "id": "R56",
+        "status": "action",
+        "reason": "No evidence about tax forms preparation/prize tax responsibility.",
+        "fix": "Prepare to provide tax forms (W-9/W-8BEN) and pay applicable taxes."
+      }
+    },
+    {
+      "category": "prize",
+      "kind": "hard",
+      "requirement": "Prize may be withheld to comply with tax laws",
+      "quote": "The Sponsor, Devpost, and/or Prize provider reserves the right to withhold a portion of the prize amount to comply with the tax laws of the United States or other Sponsor jurisdiction, or those of a winner’s jurisdiction.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R57",
+      "result": {
+        "id": "R57",
+        "status": "action",
+        "reason": "No evidence about prize withholding for tax compliance awareness.",
+        "fix": "Understand sponsor may withhold prize portion to comply with tax laws."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Entrants must be individuals or teams representing an organization",
+      "quote": "Prizes will be payable to the Entrant, if an individual; to the Entrant’s Representative, if a Team; or to the Organization, if the Entrant is an Organization.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R58",
+      "result": {
+        "id": "R58",
+        "status": "action",
+        "reason": "No evidence about prize payee understanding (individual/team/org).",
+        "fix": "Understand prize payable to entrant (individual), representative (team), or org (organization)."
+      }
+    },
+    {
+      "category": "judging",
+      "kind": "soft",
+      "requirement": "Judges' decisions are final and binding",
+      "quote": "You will be bound by and comply with these Official Rules and the decisions of the Sponsor, Administrator, and/or the Hackathon Judges which are binding and final in all matters relating to the Hackathon.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R59",
+      "result": {
+        "id": "R59",
+        "status": "action",
+        "reason": "No evidence about understanding judges' decisions are final/binding.",
+        "fix": "Acknowledge judges' decisions are final and binding per official rules."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "hard",
+      "requirement": "Entrants release sponsors from liability for any claims related to participation or prize use",
+      "quote": "you release, indemnify, defend and hold harmless the Promotion Entities, and their respective parent, subsidiary, and affiliated companies, the Prize suppliers and any other organizations responsible for sponsoring, fulfilling, administering, advertising or promoting the Hackathon, and all of their respective past and present officers, directors, employees, agents and representatives (hereafter the “Released Parties”) from and against any and all claims, expenses, and liabilities (including reasonable attorneys’ fees), including but not limited to negligence and damages of any kind to persons and property, defamation, slander, libel, violation of right of publicity, infringement of trademark, copyright or other intellectual property rights, property damage, or death or personal injury arising out of or relating to a Entrant’s entry, creation of Submission or entry of a Submission, participation in the Hackathon, acceptance or use or misuse of the Prize (including any travel or activity related thereto) and/or the broadcast, transmission, performance, exploitation or use of the Submission as authorized or licensed by these Official Rules.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R60",
+      "result": {
+        "id": "R60",
+        "status": "action",
+        "reason": "No evidence about entrant releasing sponsors from liability.",
+        "fix": "Agree to release/indemnify sponsors from claims related to participation/prize use."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "hard",
+      "requirement": "Released parties have no liability for technical failures or errors",
+      "quote": "The Released Parties are not responsible for incomplete, late, misdirected, damaged, lost, illegible, or incomprehensible Submissions or for address or email address changes of the Entrants. Proof of sending or submitting the aforementioned will not be deemed to be proof of receipt by the Sponsor or Administrator. If for any reason any Entrant’s Submission is determined to have not been received or been erroneously deleted, lost, or otherwise destroyed or corrupted, the Entrant’s sole remedy is to request the opportunity to resubmit its Submission. Such a request must be made promptly after the Entrant knows or should have known there was a problem and will be determined at the sole discretion of the Sponsor.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R61",
+      "result": {
+        "id": "R61",
+        "status": "action",
+        "reason": "No evidence about released parties' liability for technical failures/errors.",
+        "fix": "Acknowledge released parties not liable for technical issues like lost submissions."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "hard",
+      "requirement": "Released parties have no liability for technical issues or errors",
+      "quote": "The Released Parties shall have no liability in connection with: Any incorrect or inaccurate information, whether caused by the Sponsor or Administrator’s electronic or printing error, or by any of the equipment or programming associated with or utilized in the Hackathon; Technical failures of any kind, including, but not limited to malfunctions, interruptions, or disconnections in phone lines, internet connectivity or electronic transmission errors, or network hardware or software or failure of the Hackathon Website; Unauthorized human intervention in any part of the entry process or the Hackathon; Technical or human error which may occur in the administration of the Hackathon or the processing of Submissions; Any injury or damage to persons or property which may be caused, directly or indirectly, in whole or in part, from the Entrant’s participation in the Hackathon or receipt or use or misuse of any Prize.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R62",
+      "result": {
+        "id": "R62",
+        "status": "action",
+        "reason": "No evidence about released parties' liability for technical/human errors.",
+        "fix": "Acknowledge released parties not liable for technical/human errors in hackathon admin."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "Entrants must comply with all official rules and not tamper with the entry process",
+      "quote": "Sponsor and Administrator reserve the right in their sole discretion to disqualify any individual or Entrant if it finds to be actually or presenting the appearance of tampering with the entry process or the operation of the Hackathon or to be acting in violation of these Official Rules or in a manner that is inappropriate, unsportsmanlike, not in the best interests of this Hackathon, or a violation of any applicable law or regulation.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R63",
+      "result": {
+        "id": "R63",
+        "status": "action",
+        "reason": "No evidence about entrant agreeing to comply with rules and not tamper.",
+        "fix": "Agree to comply with all rules and not tamper with entry process/Hackathon ops."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "hard",
+      "requirement": "Entrants release the sponsor from liability for damages beyond actual out-of-pocket costs",
+      "quote": "Entrant agrees that: ... Under no circumstances will Entrant be permitted to obtain awards for, and Entrant hereby waives all rights to claim, punitive, incidental or consequential damages, or any other damages, including attorneys’ fees, other than contestant’s actual out-of-pocket expenses (i.e., costs associated with entering this Hackathon), and Entrant further waives all rights to have damages multiplied or increased.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": false,
+      "quoteScore": 0.87,
+      "id": "R64",
+      "result": null
+    },
+    {
+      "category": "other",
+      "kind": "hard",
+      "requirement": "Disputes must be resolved through binding arbitration, not class actions",
+      "quote": "Any and all disputes and causes of action arising out of or connected with this Hackathon, or any Prizes awarded, shall be resolved individually, without resort to any form of class action lawsuit, and exclusively by final and binding arbitration under the rules of the American Arbitration Association and held at the AAA regional office nearest the contestant;",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R65",
+      "result": {
+        "id": "R65",
+        "status": "action",
+        "reason": "No evidence about dispute resolution via binding arbitration understanding.",
+        "fix": "Agree disputes resolved via binding arbitration (AAA), not class actions."
+      }
+    },
+    {
+      "category": "ip",
+      "kind": "hard",
+      "requirement": "Entrants must not use sponsor's intellectual property beyond permitted use",
+      "quote": "Excluding Submissions, all intellectual property related to this Hackathon, including but not limited to copyrighted material, trademarks, trade-names, logos, designs, promotional materials, web pages, source codes, drawings, illustrations, slogans and representations are owned or used under license by the Sponsor and/or Administrator. All rights are reserved. Unauthorized copying or use of any copyrighted material or intellectual property without the express written consent of its owners is strictly prohibited.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R66",
+      "result": {
+        "id": "R66",
+        "status": "action",
+        "reason": "No evidence about not using sponsor's IP beyond permitted use.",
+        "fix": "Confirm no unauthorized use of sponsor's copyrighted material/IP beyond license."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "soft",
+      "requirement": "Sponsor can modify rules at any time without notice",
+      "quote": "The terms and conditions of the Official Rules are subject to change at any time, including the rights or obligations of the Entrant, the Sponsor and Administrator. The Sponsor and Administrator will post the terms and conditions of the amended Official Rules on the Hackathon Website.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R67",
+      "result": {
+        "id": "R67",
+        "status": "action",
+        "reason": "No evidence about sponsor's right to modify rules without notice.",
+        "fix": "Acknowledge sponsor can modify rules anytime; check website for updates."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "soft",
+      "requirement": "Ambiguities in rules must be clarified in writing",
+      "quote": "If at any time prior to the deadline, an Entrant or prospective Entrant believes that any term in the Official Rules is or may be ambiguous, they must submit a written request for clarification.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R68",
+      "result": {
+        "id": "R68",
+        "status": "action",
+        "reason": "No evidence about process to clarify rule ambiguities in writing.",
+        "fix": "Submit written request for clarification if any rule term seems ambiguous."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "soft",
+      "requirement": "Failure to enforce rules does not waive them",
+      "quote": "The Sponsor or Administrator’s failure to enforce any term of these Official Rules shall not constitute a waiver of that provision.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R69",
+      "result": {
+        "id": "R69",
+        "status": "action",
+        "reason": "No evidence about failure to enforce rules not constituting waiver.",
+        "fix": "Understand sponsor/admin failure to enforce ≠ waiver of that provision."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "soft",
+      "requirement": "If any provision is illegal, the rest remains in effect",
+      "quote": "Should any provision of these Official Rules be or become illegal or unenforceable in any jurisdiction whose laws or regulations may apply to an Entrant, such illegality or unenforceability shall leave the remainder of these Official Rules, including the Rule affected, to the fullest extent permitted by law, unaffected and valid.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R70",
+      "result": {
+        "id": "R70",
+        "status": "action",
+        "reason": "No evidence about severability if provision illegal.",
+        "fix": "Understand if any provision illegal, rest remains in effect to fullest extent permitted."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "info",
+      "requirement": "Review Devpost Terms of Service for additional rules",
+      "quote": "Please review the Devpost Terms of Service at https://info.devpost.com/terms for additional rules that apply to your participation in the Hackathon and more generally your use of the Hackathon Website. Such Terms of Service are incorporated by reference into these Official Rules, including that the term \"Poster\" in the Terms of Service shall mean the same as \"Sponsor\" in these Official Rules.",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R71",
+      "result": null
+    },
+    {
+      "category": "other",
+      "kind": "info",
+      "requirement": "Send email to [email protected] for questions",
+      "quote": "For questions, send an email to [email protected] .",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R72",
+      "result": null
+    },
+    {
+      "category": "eligibility",
+      "kind": "info",
+      "requirement": "Participate in the hackathon",
+      "quote": "Welcome to the Nebius x NVIDIA Global AI Hackathon",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R73",
+      "result": null
+    },
+    {
+      "category": "deadline",
+      "kind": "info",
+      "requirement": "Submit your project before the submission deadline",
+      "quote": "Review the complete Official Rules",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R74",
+      "result": null
+    },
+    {
+      "category": "repository",
+      "kind": "hard",
+      "requirement": "Submit a public code repository URL with an open source license",
+      "quote": "Make sure to highlight how you've used NVIDIA Nemotron or other NVIDIA open source models, where Token Factory accelerated your workflow, and any other Nebius Tools or Services used.",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R75",
+      "result": {
+        "id": "R75",
+        "status": "pass",
+        "reason": "Public repo URL provided with MIT license; highlights NVIDIA Nemotron/Nebius Token Factory usage.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "description",
+      "kind": "hard",
+      "requirement": "Provide a project description explaining what you created, why, and how it works",
+      "quote": "A project description. Tell us what you created, why you created it, and how it works.",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R76",
+      "result": {
+        "id": "R76",
+        "status": "pass",
+        "reason": "Description field provides 139 chars explaining what created, why, and how it works.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "demo",
+      "kind": "hard",
+      "requirement": "Provide a URL to a working demo, hosted application, or test build",
+      "quote": "A working demo. Provide a URL to a working demo, hosted application, or test build of your project.",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R77",
+      "result": {
+        "id": "R77",
+        "status": "pass",
+        "reason": "Demo URL provided and reachable (status 200) for hosted application/test build.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "video",
+      "kind": "hard",
+      "requirement": "Upload a 3-minute or shorter public YouTube video showing your project working",
+      "quote": "A demo video. Upload a 3-minute or shorter public YouTube video showing your project working — how you used Nebius Token Factory and NVIDIA Nemotron or other NVIDIA open source models.",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R78",
+      "result": {
+        "id": "R78",
+        "status": "fail",
+        "reason": "No YouTube video provided; required 3-min-or-shorter public demo video missing.",
+        "fix": "Upload public YouTube video ≤3 min showing project working with Nebius Token Factory/NVIDIA Nemotron."
+      }
+    },
+    {
+      "category": "track",
+      "kind": "info",
+      "requirement": "Select one of the four tracks for your project",
+      "quote": "Pick the track that is the best fit for your project.",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R79",
+      "result": null
+    },
+    {
+      "category": "language",
+      "kind": "info",
+      "requirement": "No language restriction specified",
+      "quote": "All submissions must run on either Nebius Token Factory or Nebius AI Cloud and use at least one NVIDIA open source model.",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R80",
+      "result": null
+    },
+    {
+      "category": "feedback",
+      "kind": "soft",
+      "requirement": "Include feedback on Nebius Token Factory, AI Cloud, and any NVIDIA tools, models, or technologies used",
+      "quote": "Feedback on Nebius Token Factory, AI Cloud, and any NVIDIA tools, models, or technologies used.",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R81",
+      "result": {
+        "id": "R81",
+        "status": "pass",
+        "reason": "Feedback provided on Nebius Token Factory, AI Cloud, and NVIDIA tools/models/tech per evidence.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "Win cash prizes or NVIDIA Jetson Orin Nano based on track and placement",
+      "quote": "Grand Prize $ 20,000 in cash 1 winner 2nd Place $ 10,000 in cash 1 winner 3rd Place $ 6,000 in cash 1 winner",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R82",
+      "result": null
+    },
+    {
+      "category": "other",
+      "kind": "info",
+      "requirement": "If you attended an IRL Builders & Brews event, choose that city for City Winner Award eligibility",
+      "quote": "If you participated in one of the IRL Builders & Brews events, choose the city you attended for a chance to win the City Winner Award.",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R83",
+      "result": null
+    },
+    {
+      "category": "judging",
+      "kind": "hard",
+      "requirement": "Projects will be judged on technological implementation, design, potential impact, and quality of the idea",
+      "quote": "Judging Criteria",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R84",
+      "result": {
+        "id": "R84",
+        "status": "action",
+        "reason": "No evidence to assess judging criteria (tech impl, design, impact, idea quality).",
+        "fix": "Cannot auto-judge; requires human evaluation per guidelines."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "hard",
+      "requirement": "Projects must be built effectively and use Nebius Token Factory or AI Cloud model(s), and NVIDIA Nemotron as part of the solution",
+      "quote": "How well is the project built, and how effectively does it use Nebius Token Factory or AI Cloud model(s), and NVIDIA Nemotron as part of the solution?",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R85",
+      "result": {
+        "id": "R85",
+        "status": "action",
+        "reason": "No evidence to assess effective use of Nebius Token Factory/AI Cloud/NVIDIA Nemotron.",
+        "fix": "Requires human judgment on build quality and effective tech use."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "hard",
+      "requirement": "Projects must deliver a complete, coherent product experience, not just a technical proof of concept",
+      "quote": "Does the project deliver a complete, coherent product experience not just a technical proof of concept?",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R86",
+      "result": {
+        "id": "R86",
+        "status": "action",
+        "reason": "No evidence to assess complete/coherent product experience vs. PoC.",
+        "fix": "Requires human judgment on delivering full product experience."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "hard",
+      "requirement": "Projects must make a credible, specific case for solving a real problem for a real audience and actually address it based on what's demonstrated",
+      "quote": "Does the project make a credible, specific case for solving a real problem for a real audience and does the solution actually address it based on what's demonstrated?",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R87",
+      "result": {
+        "id": "R87",
+        "status": "action",
+        "reason": "No evidence to assess credible case for solving real problem for real audience.",
+        "fix": "Requires human judgment on real problem/solution demonstration."
+      }
+    },
+    {
+      "category": "other",
+      "kind": "hard",
+      "requirement": "Projects must show a creative, non-obvious use of Nebius Token Factory or AI Cloud model(s), and NVIDIA Nemotron, and demonstrate genuine understanding of the problem space",
+      "quote": "Is this a creative, non-obvious use of Nebius Token Factory or AI Cloud model(s), and NVIDIA Nemotron and does the team show genuine understanding of the problem space?",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R88",
+      "result": {
+        "id": "R88",
+        "status": "action",
+        "reason": "No evidence to assess creative/non-obvious use or genuine problem understanding.",
+        "fix": "Requires human judgment on creative use and problem space comprehension."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "hard",
+      "requirement": "You must be eligible to enter the hackathon as defined by the contest rules",
+      "quote": "We've detected that you are using an unsupported browser. Please upgrade your browser to Internet Explorer 10 or higher.",
+      "source": "S3",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/resources",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R89",
+      "result": {
+        "id": "R89",
+        "status": "action",
+        "reason": "Browser support notice irrelevant to eligibility; no actual eligibility evidence provided.",
+        "fix": "Confirm entrant meets all eligibility criteria (age, jurisdiction, etc.)."
+      }
+    },
+    {
+      "category": "repository",
+      "kind": "hard",
+      "requirement": "You must submit your project through the official hackathon platform or repository system",
+      "quote": "Join hackathon",
+      "source": "S3",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/resources",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R90",
+      "result": {
+        "id": "R90",
+        "status": "pass",
+        "reason": "Entry submitted via Devpost/GitHub (implied by repo and description); using official platform.",
+        "fix": ""
+      }
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "Prizes include $500 City Winner Award and additional credits for participants",
+      "quote": "Attendees can also unlock additional Nebius AI Cloud, Token Factory, Tavily credits to keep building after the event.",
+      "source": "S3",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/resources",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R91",
+      "result": null
+    },
+    {
+      "category": "deadline",
+      "kind": "info",
+      "requirement": "Event dates are listed for various cities worldwide",
+      "quote": "Events are coming to participating cities across the Americas, Asia-Pacific, Europe, and the Middle East.",
+      "source": "S3",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/resources",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R92",
+      "result": null
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "You can earn $25 Token Factory credits by filling out a form with activation code NEBIUS-DEVPOST-GLOBAL26",
+      "quote": "Fill out this form for $25 Token Factory credits",
+      "source": "S3",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/resources",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R93",
+      "result": null
+    },
+    {
+      "category": "prize",
+      "kind": "info",
+      "requirement": "You can earn another $25 Token Factory credits by joining the Nebius Builders Program",
+      "quote": "Get another $25 Token Factory credits by joining the Nebius Builders Program for free credits (Token Factory, Tavily, Nebius Academy) plus office hours",
+      "source": "S3",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/resources",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R94",
+      "result": null
     }
   ],
   "evidence": {
     "track": "Best Apps and Agents",
     "repo": {
-      "provided": false,
-      "host": null
+      "provided": true,
+      "reachable": true,
+      "public": true,
+      "fullName": "coo001/fineprint",
+      "license": "MIT",
+      "description": "Evidence-linked contest entry checks with NVIDIA Nemotron on Nebius Token Factory.",
+      "pushedAt": "2026-10-21T13:45:45Z",
+      "createdAt": "2026-10-21T13:24:15Z",
+      "readmeChars": 7260,
+      "readmeMentions": {
+        "nemotron": true,
+        "nvidia": true,
+        "tokenFactory": true,
+        "nebius": true,
+        "tavily": true,
+        "setup": true,
+        "license": true
+      }
     },
     "video": {
       "provided": false,
       "durationMin": null
     },
     "demo": {
-      "provided": false
+      "provided": true,
+      "status": 200
     },
     "description": {
-      "chars": 0,
-      "englishShare": null,
+      "chars": 139,
+      "englishShare": 1,
       "mentions": {
         "nemotron": false,
         "nvidia": false,
@@ -105,49 +1535,72 @@
         "license": false
       }
     },
-    "feedbackProvided": false,
+    "feedbackProvided": true,
     "existedBefore": null,
     "city": null
   },
   "counts": {
-    "pass": 0,
-    "fail": 1,
-    "action": 2,
-    "manual": 0,
+    "pass": 17,
+    "fail": 2,
+    "action": 46,
+    "manual": 1,
     "n/a": 0
   },
-  "conflicts": [],
-  "topFixes": [
-    "Provide a public repository URL with an open source license file (e.g., MIT, Apache 2.0) visible in the About section to resolve the hard requirement failure (R02).",
-    "Provide submission timestamp to verify submission before the October 30, 2026 10:00 AM PT deadline (R01).",
-    "Specify the participating city associated with the submission to determine eligibility for City Winner Award (R03)."
+  "conflicts": [
+    {
+      "a": "R20",
+      "b": "R78",
+      "topic": "video requirement",
+      "explanation": "R20 (S1) requires a video less than 3 minutes showing the project functioning on the target device. R78 (S2) requires a 3-minute or shorter public YouTube video showing how Nebius Token Factory and NVIDIA Nemotron were used. Both require a short demo video, but R78 specifies YouTube and explicit mention of Nebius/NVIDIA usage, while R20 is more general about device footage. The core requirement (short demo video) is aligned, but the platform and content specifics differ slightly.",
+      "whatToDo": "Upload a single public YouTube video ≤3 minutes that shows the project functioning on its target device AND explicitly demonstrates use of Nebius Token Factory and NVIDIA Nemotron/open models to satisfy both sources."
+    },
+    {
+      "a": "R09",
+      "b": "R80",
+      "topic": "required technology platform",
+      "explanation": "R09 (S1) defines 'Runs on Nebius Token Factory or Nebius AI Cloud' as making a runtime call to Token Factory inference API or being deployed/run using Nebius AI Cloud compute. R80 (S2) states all submissions must run on either Nebius Token Factory or Nebius AI Cloud AND use at least one NVIDIA open source model. R80 adds a mandatory NVIDIA open source model requirement not explicitly stated in R09.",
+      "whatToDo": "Ensure the project demonstrably uses at least one NVIDIA open source model (e.g., Nemotron) in addition to running on Nebius Token Factory/AI Cloud, and highlight this in the video and description."
+    },
+    {
+      "a": "R23",
+      "b": "R79",
+      "topic": "track selection",
+      "explanation": "R23 (S1) requires identifying which track you are submitting into (hard requirement). R79 (S2) says 'Pick the track that is the best fit for your project' (info). The project evidence shows track 'Best Apps and Agents' but S1's official rules may define specific track names (e.g., 'Coding and Agentic Engineering Track' per R51). There's a risk the track name used doesn't match S1's official track taxonomy.",
+      "whatToDo": "Verify the exact track names defined in S1 Official Rules and select/submit under the correct official track name; ensure the project fits that track's stated goal per R35."
+    }
   ],
-  "verdict": "Submission fails due to missing public repository with open source license (hard requirement); deadline verification and city eligibility pending.",
+  "topFixes": [
+    "Upload a public YouTube video ≤3 minutes showing the project functioning on its target device with clear demonstration of Nebius Token Factory and NVIDIA Nemotron usage (fixes R20 fail, R21/R22/R31 actions, R78 hard requirement).",
+    "Confirm entrant is not a resident of prohibited jurisdictions (Brazil, Quebec, Russia, Crimea, Cuba, Iran, North Korea, or comprehensively sanctioned countries) and is at least the age of majority in their jurisdiction (fixes R02/R05 actions - disqualification risks).",
+    "Confirm the project is original work solely owned by the entrant/team with no third-party IP rights violations, and not derived from Sponsor/Admin-funded work (fixes R26/R34/R36 actions - IP/eligibility disqualification risks).",
+    "Ensure project is available free of charge without restriction for testing/judging until judging period ends (fixes R29 action - hard requirement).",
+    "If entering as a team or organization, appoint and authorize an eligible Representative; confirm all members are eligible individuals (fixes R03/R04/R27 actions - eligibility structure)."
+  ],
+  "verdict": "Submission passes core technical requirements (repo, demo, description, track, feedback, Nebius/NVIDIA usage) but fails critically on missing demo video and has multiple unverified eligibility/IP/legal obligations that risk disqualification if selected as winner.",
   "usage": [
     {
       "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
       "tier": "fast",
-      "calls": 2,
-      "promptTokens": 641,
-      "completionTokens": 280,
-      "ms": 3699
+      "calls": 10,
+      "promptTokens": 11977,
+      "completionTokens": 8320,
+      "ms": 72741
     },
     {
       "model": "nvidia/nemotron-3-super-120b-a12b",
       "tier": "mid",
       "calls": 1,
-      "promptTokens": 506,
-      "completionTokens": 190,
-      "ms": 2064
+      "promptTokens": 5551,
+      "completionTokens": 3168,
+      "ms": 17982
     },
     {
       "model": "nvidia/Nemotron-3-Ultra-550b-a55b",
       "tier": "deep",
       "calls": 1,
-      "promptTokens": 553,
-      "completionTokens": 151,
-      "ms": 1964
+      "promptTokens": 8541,
+      "completionTokens": 893,
+      "ms": 4272
     }
-  ],
-  "validationScope": "Actual three-tier API pipeline over saved official excerpts (captured 2026-10-20), not a current full-site fetch or deployed demo"
+  ]
 }
