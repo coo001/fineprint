@@ -1,0 +1,128 @@
+Welcome to the Nebius x NVIDIA Global AI Hackathon
+Build a working AI system on open, independent infrastructure, and own the whole thing. The NVIDIA x Nebius Global AI Hackathon is for AI builders, ML engineers, founders, and anyone shipping practical, high-performance AI. You'll build with NVIDIA open source models served on Nebius through Nebius Token Factory, on high performance GPU infrastructure. Experiment with new ideas, push the boundaries of open source AI, and submit a project for a chance to win prizes and recognition.
+Join fellow builders for technical onboarding, casual workshops, team formation, focused build time, and feedback as you participate in the Global AI Hackathon. Find your nearby city/event here !
+Requirements
+The Challenge
+All submissions must run on either Nebius Token Factory or Nebius AI Cloud and use at least one NVIDIA open source model. Everything else is up to you.
+What to Build
+Whether it is an app, agent, or something entirely new, your project should fit into one of the following tracks:
+- Coding and Agentic Engineering Track
+Build coding agents and developer tools: agents that write, run, and test code in Token Factory.
+- Best Apps and Agents Track
+Build any app or agent someone would actually use, from a productivity tool or copilot to a workflow that runs itself. Power it with Nemotron models on Nebius through Token Factory. Reach for Nemotron 3 Ultra when you need serious reasoning, and let Nano or Super handle the fast, everyday calls, so your app stays responsive and your credits stretch further. We encourage you to deploy your application with Nebius Serverless Endpoints, or use Nebius Serverless Jobs for background processing and asynchronous workflows, though neither is required.
+- Personal AI Track
+Build an always-on, private assistant that works for you while keeping your data under your control. Give it persistent memory, reusable skills, access to the tools and information you choose, and the ability to carry out tasks across your daily workflows. Use at least one NVIDIA open source model, and use tools such as NVIDIA NemoClaw, OpenShell, Hermes Agent, and Nebius Serverless to bring personal AI to assemble, secure, and run your own personal AI system.
+- Physical AI Track
+Build embodied and edge agents that sense and act in the real world: robotics, IoT, and on-device intelligence, powered by Nemotron, GROOT, Cosmos and Sonic models and coordinated through an agent runtime. Use Nebius Serverless Jobs to run simulations, generate synthetic data, evaluate robot policies, or process sensor data at scale, and Nebius Serverless Endpoints to serve real-time inference when needed. Your demonstration video must include at least a 1-minute clip showing the physical hardware/robot actually operating, or — if your project has no physical hardware component — the key application modules in action.
+What to Submit
+- A working project. Build something with NVIDIA Nemotron or other NVIDIA open source models on either Nebius Token Factory or Nebius AI Cloud that meets the track requirements.
+- A category. Pick the track that is the best fit for your project.
+- A project description. Tell us what you created, why you created it, and how it works.
+- A working demo. Provide a URL to a working demo, hosted application, or test build of your project.
+- Not required for Physical AI submissions.
+- A demo video. Upload a 3-minute or shorter public YouTube video showing your project working — how you used Nebius Token Factory and NVIDIA Nemotron or other NVIDIA open source models.
+- Physical AI submissions should include at least one minute of footage showing the physical hardware/robot actually operating, or — if your project has no physical hardware component — the key application modules in action.
+- A public code repository. Submit a publicly accessible code repository URL (GitHub, GitLab, or Bitbucket) for judging and testing. The repository must include an open source license (such as Apache 2.0, MIT, or MPL 2.0), visible at the top of the repository page.
+- Include a README with setup instructions and clear guidance for running your project.
+- Make sure to highlight how you've used NVIDIA Nemotron or other NVIDIA open source models, where Token Factory accelerated your workflow, and any other Nebius Tools or Services used.
+- Feedback on Nebius Token Factory, AI Cloud, and any NVIDIA tools, models, or technologies used.
+- If your project existed before the Submission Period, include a written explanation of what was significantly updated during the Submission Period.
+- If you participated in one of the IRL Builders & Brews events, choose the city you attended for a chance to win the City Winner Award.
+- Review the complete Official Rules .
+Hackathon Sponsors
+Prizes
+$ 50,000 + in prizes
++ other prizes
+Grand Prize
+$ 20,000 in cash
+1 winner
+2nd Place
+$ 10,000 in cash
+1 winner
+3rd Place
+$ 6,000 in cash
+1 winner
+Coding and Agentic Engineering Track Winner
+1 winner
+1 NVIDIA Jetson Orin Nano
+Best Apps and Agents Track Winner
+1 winner
+1 NVIDIA Jetson Orin Nano
+Personal AI Track Winner
+1 winner
+1 NVIDIA Jetson Orin Nano
+Physical AI Track Winner
+1 winner
+1 NVIDIA Jetson Orin Nano
+Best Use of Tavily
+$ 3,000 in cash
+1 winner
+City Winner Awards
+$ 500 in cash
+20 winners
+Most Valuable Feedback
+$ 100 in cash
+10 winners
+NVIDIA swag pack
+Devpost Achievements
+Submitting to this hackathon could earn you:
+Judges
+Nancy Agarwal
+Senior Software Engineer, NVIDIA
+Abhinav Balasubramanian
+Staff AI Engineer, NVIDIA
+Dylan Bristot
+Founding PMM, Nebius Token Factory
+AbdulMajed Raja
+Developer Relations Lead (Token Factory) - APJ, Nebius
+Rob Spectre
+Developer Relations Advisor, Nebius
+Evan Rimer
+Forward Deployed Engineer, Tavily
+Lakshmi Rameish
+Senior System Software Engineer, NVIDIA
+Surbhi Jha
+Senior Software Engineer, NVIDIA
+Joe Sarabia
+Director of Product, Ecosystem, Nebius
+Marouane Khoukh
+Technical Developer Advocate, Nebius
+Ricky Johnson
+Developer Relations, Tavily
+Selena Williams
+System Software Engineer, NVIDIA
+Aleksandr Patrushev
+Head of Product Management, ML/AI, Nebius
+Unmesh Kurup
+Chief ML Researcher, Product, Nebius
+Daniel Myers
+Director of Developer Relations, Nebius
+Jacquie Capur
+Senior Developer Advocate, Nebius
+Lakshya Prakash Agarwal
+Forward Deployed Engineer, Tavily
+Johnny Nunez
+AI Developer Advocate - Physical AI & Robotics, NVIDIA
+Evan Helda
+Head of GTM Physical AI, Nebius
+Mikhail Rozhkov
+Technical Product Manager - Serverless AI, Nebius
+Dhruv Diddi
+Principal - Physical AI Ecosystem, Nebius
+Aditya Sahu
+TME, Jetson Platform, NVIDIA
+Sayali Kandarkar
+Senior AI/ML Engineer, NVIDIA
+Judging Criteria
+-
+Technological Implementation
+How well is the project built, and how effectively does it use Nebius Token Factory or AI Cloud model(s), and NVIDIA Nemotron as part of the solution?
+-
+Design
+Does the project deliver a complete, coherent product experience not just a technical proof of concept?
+-
+Potential Impact
+Does the project make a credible, specific case for solving a real problem for a real audience and does the solution actually address it based on what's demonstrated?
+-
+Quality of the Idea
+Is this a creative, non-obvious use of Nebius Token Factory or AI Cloud model(s), and NVIDIA Nemotron and does the team show genuine understanding of the problem space?

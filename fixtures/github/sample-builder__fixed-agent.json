@@ -1,0 +1,1 @@
+{ "_note": "Sample data for MOCK mode demos, not a real repository.", "reachable": true, "public": true, "fullName": "sample-builder/fixed-agent", "license": "MIT", "description": "My hackathon agent", "readmeChars": 3120, "readmeMentions": { "nemotron": true, "nvidia": true, "tokenFactory": true, "nebius": true, "tavily": true, "setup": true, "license": true } }

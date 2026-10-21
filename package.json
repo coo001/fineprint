@@ -1,0 +1,14 @@
+{
+  "name": "fineprint",
+  "version": "0.1.0",
+  "description": "An agent that reads a contest's official rules and checks your entry against them, with verbatim quotes. Runs NVIDIA Nemotron models on Nebius Token Factory and uses Tavily for extraction.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": "22.x" },
+  "dependencies": { "@vercel/blob": "2.8.2" },
+  "scripts": {
+    "start": "node server.js",
+    "check": "node bin/check.js",
+    "test": "node --test test/*.test.js"
+  }
+}

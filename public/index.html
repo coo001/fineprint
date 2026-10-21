@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FinePrint · check your entry against the official rules</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#14181f;--mut:#5b6573;--line:#e3e7ec;--g:#76b900;--pass:#1f8a4c;--fail:#c62828;--act:#b26a00;--man:#3a5bc7;--na:#8a94a3}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 -apple-system,system-ui,Segoe UI,Roboto,sans-serif}
+header{display:flex;align-items:center;gap:14px;padding:14px 26px;background:#0f1419;color:#fff}
+header h1{font-size:20px;margin:0}header .tag{color:#b9c2cc;font-size:14px}
+.badge{margin-left:auto;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.04em}
+.badge.MOCK{background:#ffe08a;color:#4a3500}.badge.LIVE{background:var(--g);color:#0b1600}
+main{display:grid;grid-template-columns:380px 1fr;gap:20px;padding:20px 26px;max-width:1500px;margin:auto}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+h2{font-size:15px;margin:0 0 10px;text-transform:uppercase;letter-spacing:.05em;color:var(--mut)}
+label{display:block;font-size:13px;color:var(--mut);margin:10px 0 4px}
+input,textarea,select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font:inherit;background:#fff}
+textarea{min-height:64px;resize:vertical}.row{display:flex;gap:8px}.row>*{flex:1}
+button{font:inherit;border:0;border-radius:8px;padding:9px 14px;cursor:pointer;background:#e9edf2}
+button.primary{background:var(--g);color:#0b1600;font-weight:700;width:100%;margin-top:14px;padding:11px}
+.presets{display:flex;gap:6px;flex-wrap:wrap}.presets button{font-size:12px;padding:5px 9px}
+.steps{list-style:none;margin:0;padding:0}.steps li{padding:6px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.chip{display:inline-block;font:12px/1.2 Menlo,monospace;padding:3px 7px;border-radius:6px;background:#eef3e3;color:#2f4a00;margin:2px 4px 2px 0}
+.chip.mid{background:#e6edff;color:#23397a}.chip.deep{background:#f3e8ff;color:#55207d}
+.verdict{font-size:18px;font-weight:650}.kpis{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:6px 12px;font-size:13px;cursor:pointer;background:#fff}
+.kpi b{font-size:18px;display:block}.kpi.on{outline:2px solid var(--ink)}
+.s-pass{color:var(--pass)}.s-fail{color:var(--fail)}.s-action{color:var(--act)}.s-manual{color:var(--man)}.s-na{color:var(--na)}.s-unverified{color:#999}
+table{width:100%;border-collapse:collapse;font-size:14px}td,th{border-top:1px solid var(--line);padding:8px 6px;vertical-align:top;text-align:left}
+th{font-size:12px;color:var(--mut);text-transform:uppercase}
+.st{font-weight:700;font-size:12px;text-transform:uppercase;white-space:nowrap}
+blockquote{margin:4px 0 0;padding:4px 10px;border-left:3px solid var(--line);color:#3c4552;font-size:13px;background:#fafbfc}
+.src{font-size:12px;color:var(--mut)}.fix{font-size:13px;color:var(--act);margin-top:3px}
+.conflict{border:1px solid #f0c36d;background:#fff8e6;border-radius:10px;padding:10px 12px;margin-top:8px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.big{font-size:22px;font-weight:700}
+.muted{color:var(--mut);font-size:13px}.hidden{display:none}ol{margin:4px 0 0;padding-left:20px}
+</style></head><body>
+<header><h1>FinePrint</h1><span class="tag">Reads the official rules so your entry doesn't fail on a technicality</span><span id="mode" class="badge">…</span></header>
+<main>
+<section>
+  <div class="card"><h2>1 · Official pages</h2>
+    <div class="presets"><button data-preset="nebius">Nebius × NVIDIA hackathon (3 pages)</button></div>
+    <label>One URL per line (rules, overview, FAQ, resources)</label>
+    <textarea id="urls" rows="4"></textarea>
+    <label>Your time zone</label><input id="tz" value="Asia/Seoul">
+  </div>
+  <div class="card"><h2>2 · Your entry</h2>
+    <div class="presets"><button data-entry="draft">Sample: draft entry</button><button data-entry="fixed">Sample: fixed entry</button></div>
+    <label>Repository URL</label><input id="repo" placeholder="https://github.com/you/project">
+    <div class="row"><div><label>Video URL</label><input id="video" placeholder="https://youtu.be/…"></div><div style="flex:.45"><label>Length (min)</label><input id="minutes" type="number" step="0.1"></div></div>
+    <label>Demo URL</label><input id="demo" placeholder="https://…">
+    <label>Track</label><input id="track" placeholder="Best Apps and Agents">
+    <label>Description (as you will paste it)</label><textarea id="desc"></textarea>
+    <label>Product feedback</label><textarea id="feedback"></textarea>
+    <label>IRL city event attended (blank if none)</label><input id="city">
+    <label for="access">Judging access code (optional, enables LIVE)</label><input id="access" type="password" autocomplete="off" placeholder="Use the code in the judging instructions">
+    <div class="muted">Without a code, checks use clearly labeled offline stand-ins. LIVE access is limited by a shared, persistent free-credit budget.</div>
+    <button class="primary" id="run">Check my entry</button>
+    <button id="archived" style="width:100%;margin-top:8px">View recorded LIVE run</button><div class="muted" id="archiveNote"></div>
+  </div>
+</section>
+<section>
+  <div class="card"><h2>Agent run · model routing on Nebius Token Factory</h2>
+    <div id="models" class="muted"></div><ul class="steps" id="steps"><li class="muted">Not started.</li></ul><div id="usage" class="muted" style="margin-top:8px"></div></div>
+  <div id="out" class="hidden">
+    <div class="card"><div class="verdict" id="verdict"></div><div class="kpis" id="kpis"></div></div>
+    <div class="grid2">
+      <div class="card"><h2>Deadline in your time zone</h2><div class="big" id="deadline">–</div><div class="muted" id="deadlineSrc"></div></div>
+      <div class="card"><h2>Fix first</h2><ol id="fixes"></ol></div>
+    </div>
+    <div class="card" id="conflictsCard"><h2>Official pages disagree</h2><div id="conflicts"></div></div>
+    <div class="card"><h2>Every rule, with the exact sentence it came from</h2>
+      <div class="row" style="margin-bottom:8px"><button id="md">Export Markdown</button><span class="muted" style="align-self:center" id="unv"></span></div>
+      <table><thead><tr><th>Status</th><th>Rule</th><th>Why / fix</th></tr></thead><tbody id="rows"></tbody></table></div>
+  </div>
+</section>
+</main>
+<script>
+const $=(id)=>document.getElementById(id);
+const esc=(s)=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let report=null, md='', filter=null, cfg=null;
+fetch('/api/config').then(r=>r.json()).then(c=>{cfg=c;$('mode').textContent=c.mode+' MODE';$('mode').className='badge '+c.mode;
+ $('models').innerHTML=`fast <span class="chip">${esc(c.models.fast)}</span> mid <span class="chip mid">${esc(c.models.mid)}</span> deep <span class="chip deep">${esc(c.models.deep)}</span> · Tavily: ${esc(c.tavily)}`+(c.mode==='MOCK'?'<br><b>Offline sample:</b> rule-based stand-ins, not a new model call. A judging access code enables LIVE while free credits are available.':'');});
+const PRESET={nebius:['https://nebiusglobalaihackathon.devpost.com/rules','https://nebiusglobalaihackathon.devpost.com/','https://nebiusglobalaihackathon.devpost.com/resources']};
+const ENTRY={draft:{repo:'https://github.com/sample-builder/draft-agent',video:'https://youtu.be/sample-draft',minutes:3.6,demo:'',track:'Best Apps and Agents',desc:'An agent that plans trips.',feedback:'',city:'Seoul'},
+ fixed:{repo:'https://github.com/sample-builder/fixed-agent',video:'https://youtu.be/sample-fixed',minutes:2.7,demo:'https://example.com/demo',track:'Best Apps and Agents',desc:'FinePrint reads the official rules of a contest and checks an entry against them, quoting the exact sentence for every rule.',feedback:'Token Factory: the OpenAI-compatible endpoint let us switch between Nemotron sizes by changing one model id; we would like per-model latency in the usage response.',city:''}};
+document.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>$('urls').value=PRESET[b.dataset.preset].join('\n'));
+document.querySelectorAll('[data-entry]').forEach(b=>b.onclick=()=>{const e=ENTRY[b.dataset.entry];$('repo').value=e.repo;$('video').value=e.video;$('minutes').value=e.minutes;$('demo').value=e.demo;$('track').value=e.track;$('desc').value=e.desc;$('feedback').value=e.feedback;$('city').value=e.city;});
+const tierOf=(m)=>Object.entries(cfg.models).find(([,v])=>v===m)?.[0]||'fast';
+$('archived').onclick=async()=>{const response=await fetch('/api/example');if(!response.ok){$('archiveNote').textContent='Recorded report unavailable.';return;}const saved=await response.json();report=saved.report;md=saved.markdown;filter=null;render();$('archiveNote').textContent='Recorded real API run from 21 Oct 2026, over saved official excerpts. This button does not make a new model request.';$('mode').textContent='RECORDED LIVE';};
+$('run').onclick=async()=>{
+  $('archiveNote').textContent='';
+  $('steps').innerHTML='';$('out').classList.add('hidden');$('usage').textContent='';filter=null;
+  const add=(h)=>{const li=document.createElement('li');li.innerHTML=h;$('steps').appendChild(li);return li;};
+  const body={urls:$('urls').value.split('\n').filter(Boolean),timeZone:$('tz').value||'UTC',entry:{repoUrl:$('repo').value,videoUrl:$('video').value,videoMinutes:$('minutes').value?Number($('minutes').value):undefined,demoUrl:$('demo').value,track:$('track').value,description:$('desc').value,feedback:$('feedback').value,city:$('city').value}};
+  const res=await fetch('/api/check',{method:'POST',headers:{'content-type':'application/json',...($('access').value?{'x-demo-token':$('access').value}:{})},body:JSON.stringify(body)});
+  if(!res.ok){add('<span class="s-fail">'+esc((await res.json()).error)+'</span>');return;}
+  const rd=res.body.getReader(),dec=new TextDecoder();let buf='';const calls={};
+  for(;;){const {value,done}=await rd.read();if(done)break;buf+=dec.decode(value,{stream:true});let i;
+    while((i=buf.indexOf('\n'))>=0){const e=JSON.parse(buf.slice(0,i));buf=buf.slice(i+1);
+      if(e.type==='step')calls[e.step]=add(`<b>${esc(e.msg)}</b> <span class="calls"></span>`);
+      else if(e.type==='log'||e.type==='error')add(`<span class="${e.type==='error'?'s-fail':'muted'}">${esc(e.msg)}</span>`);
+      else if(e.type==='sources')add('<span class="muted">'+e.sources.map(s=>`${s.id} ${esc(s.url)} · ${s.chars} chars via ${s.via}`).join('<br>')+'</span>');
+      else if(e.type==='call'){const li=calls[e.call.step==='deep'?'deep':e.call.step];if(li)li.querySelector('.calls').insertAdjacentHTML('beforeend',`<span class="chip ${e.call.tier}">${e.call.tier} ${e.call.promptTokens}+${e.call.completionTokens} tok · ${e.call.ms} ms</span>`);}
+      else if(e.type==='done'){report=e.report;md=e.markdown;render();}}}
+};
+function render(){
+  const r=report;$('out').classList.remove('hidden');$('mode').textContent=r.mode+' MODE';$('mode').className='badge '+r.mode;
+  $('usage').innerHTML='Usage: '+r.usage.map(u=>`<span class="chip ${u.tier}">${u.tier}: ${u.calls} call(s), ${u.promptTokens+u.completionTokens} tokens</span>`).join(' ')+(r.mode==='MOCK'?' <b>(MOCK — estimated, no model was called)</b>':'');
+  $('verdict').textContent=r.verdict;
+  const unv=r.requirements.filter(q=>!q.quoteVerified).length;
+  const k={fail:'Fail',action:'To do',manual:'Check by hand',pass:'Pass','n/a':'N/A'};
+  $('kpis').innerHTML=Object.entries(k).map(([s,l])=>`<div class="kpi ${filter===s?'on':''}" data-f="${s}"><b class="s-${s.replace('/','')}">${r.counts[s]||0}</b>${l}</div>`).join('')+`<div class="kpi ${filter==='info'?'on':''}" data-f="info"><b>${r.requirements.filter(q=>q.quoteVerified&&q.kind==='info').length}</b>Info</div>`;
+  document.querySelectorAll('.kpi').forEach(d=>d.onclick=()=>{filter=filter===d.dataset.f?null:d.dataset.f;render();});
+  $('deadline').textContent=r.deadline?r.deadline.local:'not found';$('deadlineSrc').textContent=r.deadline?`from ${r.deadline.id} · ${r.deadline.utc}`:'';
+  $('fixes').innerHTML=r.topFixes.map(f=>`<li>${esc(f)}</li>`).join('')||'<li>Nothing urgent.</li>';
+  $('conflictsCard').classList.toggle('hidden',!r.conflicts.length);
+  const byId=Object.fromEntries(r.requirements.map(q=>[q.id,q]));
+  $('conflicts').innerHTML=r.conflicts.map(c=>`<div class="conflict"><b>${esc(c.topic)}</b><div>${esc(c.explanation)}</div>${[c.a,c.b].map(id=>`<blockquote>${esc(byId[id].quote)}<div class="src">${id} · ${esc(byId[id].sourceUrl)}</div></blockquote>`).join('')}<div class="fix">${esc(c.whatToDo)}</div></div>`).join('');
+  $('unv').textContent=unv?`${unv} extracted rule(s) set aside: their quote was not found verbatim in the page.`:'All quotes were found verbatim in the source pages.';
+  const order={fail:0,action:1,manual:2,pass:3,'n/a':4};
+  const rows=r.requirements.filter(q=>q.quoteVerified).map(q=>({q,s:q.result?q.result.status:'info'})).filter(x=>!filter||x.s===filter).sort((a,b)=>(order[a.s]??5)-(order[b.s]??5));
+  $('rows').innerHTML=rows.map(({q,s})=>`<tr><td class="st s-${s.replace('/','')}">${s}<div class="src">${q.id} · ${q.kind}</div></td><td>${esc(q.requirement)}<blockquote>${esc(q.quote)}<div class="src">${q.source} · ${esc(q.sourceUrl)}</div></blockquote></td><td>${esc(q.result?.reason||'')}${q.result?.fix?`<div class="fix">→ ${esc(q.result.fix)}</div>`:''}</td></tr>`).join('');
+}
+$('md').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([md],{type:'text/markdown'}));a.download='fineprint-report.md';a.click();};
+</script></body></html>

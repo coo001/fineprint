@@ -1,0 +1,153 @@
+{
+  "generatedAt": "2026-10-21T13:13:57.799Z",
+  "mode": "LIVE",
+  "models": {
+    "fast": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+    "mid": "nvidia/nemotron-3-super-120b-a12b",
+    "deep": "nvidia/Nemotron-3-Ultra-550b-a55b"
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "url": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "via": "saved-official-excerpt",
+      "chars": 372
+    },
+    {
+      "id": "S2",
+      "url": "https://nebiusglobalaihackathon.devpost.com/resources",
+      "via": "saved-official-excerpt",
+      "chars": 393
+    }
+  ],
+  "deadline": {
+    "id": "R01",
+    "utc": "2026-10-30T17:00:00.000Z",
+    "local": "2026-10-31, 02:00 GMT+9",
+    "timeZone": "Asia/Seoul"
+  },
+  "requirements": [
+    {
+      "category": "deadline",
+      "kind": "hard",
+      "requirement": "Submit before October 30, 2026 at 10:00 am Pacific Time",
+      "quote": "Submission Period: Wednesday, August 26, 2026 (9:00 am Pacific Time) – Friday, October 30, 2026 (10:00 am Pacific Time) (“Submission Period”).",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R01",
+      "result": {
+        "id": "R01",
+        "status": "action",
+        "reason": "No submission timestamp provided in evidence to verify if submitted before October 30, 2026 at 10:00 am Pacific Time.",
+        "fix": "Provide submission timestamp."
+      }
+    },
+    {
+      "category": "repository",
+      "kind": "hard",
+      "requirement": "Make the repository public and open source with a detectable license file",
+      "quote": "The repository must be public and open source by including an open source license file (such as Apache 2.0, MIT, or MPL 2.0). This license should be detectable and visible at the top of the repository page (in the About section).",
+      "source": "S1",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/rules",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R02",
+      "result": {
+        "id": "R02",
+        "status": "fail",
+        "reason": "Repository not provided (provided: false), so cannot be public or have a detectable license file.",
+        "fix": "Provide a public repository URL with an open source license file (e.g., MIT, Apache 2.0) visible in the About section."
+      }
+    },
+    {
+      "category": "eligibility",
+      "kind": "soft",
+      "requirement": "Submit your project to be considered for the City Winner Award",
+      "quote": "all eligible submissions associated with a participating city will be considered",
+      "source": "S2",
+      "sourceUrl": "https://nebiusglobalaihackathon.devpost.com/resources",
+      "quoteVerified": true,
+      "quoteScore": 1,
+      "id": "R03",
+      "result": {
+        "id": "R03",
+        "status": "action",
+        "reason": "City not specified in evidence (city: null), so cannot determine eligibility for City Winner Award.",
+        "fix": "Specify the participating city associated with the submission."
+      }
+    }
+  ],
+  "evidence": {
+    "track": "Best Apps and Agents",
+    "repo": {
+      "provided": false,
+      "host": null
+    },
+    "video": {
+      "provided": false,
+      "durationMin": null
+    },
+    "demo": {
+      "provided": false
+    },
+    "description": {
+      "chars": 0,
+      "englishShare": null,
+      "mentions": {
+        "nemotron": false,
+        "nvidia": false,
+        "tokenFactory": false,
+        "nebius": false,
+        "tavily": false,
+        "setup": false,
+        "license": false
+      }
+    },
+    "feedbackProvided": false,
+    "existedBefore": null,
+    "city": null
+  },
+  "counts": {
+    "pass": 0,
+    "fail": 1,
+    "action": 2,
+    "manual": 0,
+    "n/a": 0
+  },
+  "conflicts": [],
+  "topFixes": [
+    "Provide a public repository URL with an open source license file (e.g., MIT, Apache 2.0) visible in the About section to resolve the hard requirement failure (R02).",
+    "Provide submission timestamp to verify submission before the October 30, 2026 10:00 AM PT deadline (R01).",
+    "Specify the participating city associated with the submission to determine eligibility for City Winner Award (R03)."
+  ],
+  "verdict": "Submission fails due to missing public repository with open source license (hard requirement); deadline verification and city eligibility pending.",
+  "usage": [
+    {
+      "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+      "tier": "fast",
+      "calls": 2,
+      "promptTokens": 641,
+      "completionTokens": 280,
+      "ms": 3699
+    },
+    {
+      "model": "nvidia/nemotron-3-super-120b-a12b",
+      "tier": "mid",
+      "calls": 1,
+      "promptTokens": 506,
+      "completionTokens": 190,
+      "ms": 2064
+    },
+    {
+      "model": "nvidia/Nemotron-3-Ultra-550b-a55b",
+      "tier": "deep",
+      "calls": 1,
+      "promptTokens": 553,
+      "completionTokens": 151,
+      "ms": 1964
+    }
+  ],
+  "validationScope": "Actual three-tier API pipeline over saved official excerpts (captured 2026-10-20), not a current full-site fetch or deployed demo"
+}
