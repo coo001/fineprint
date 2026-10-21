@@ -23,7 +23,7 @@ const toMicro = (usd) => Math.ceil(usd * MICRO - 1e-9);
 // store: { get() -> null | { data, etag }, create(data) -> void (throws ConflictError if it exists), update(data, etag) -> void (throws ConflictError on etag mismatch) }
 export function createLedger({ store, capUsd = 0.75, maxAttempts = 8 }) {
   const cap = toMicro(capUsd);
-  async function reserve(usd, note = '') {
+  async function reserveOnce(usd, note = '') {
     const cost = toMicro(usd);
     if (!(cost > 0) || !Number.isFinite(cost)) throw new BudgetError('Invalid cost reservation.', 'invalid');
     for (let attempt = 0; attempt < maxAttempts; attempt++) {
@@ -47,6 +47,13 @@ export function createLedger({ store, capUsd = 0.75, maxAttempts = 8 }) {
     }
     throw new BudgetError('Budget ledger is busy (too many write conflicts); LIVE call refused.');
   }
+  // Serialize this instance's reservations; CAS still protects writes across different instances.
+  let pending = Promise.resolve();
+  function reserve(usd, note = '') {
+    const run = pending.then(() => reserveOnce(usd, note));
+    pending = run.catch(() => {});
+    return run;
+  }
   async function status() {
     const cur = await store.get();
     return { capMicro: cap, reservedMicro: cur?.data?.reservedMicro ?? 0, calls: cur?.data?.calls ?? 0 };
@@ -58,7 +65,7 @@ export function createLedger({ store, capUsd = 0.75, maxAttempts = 8 }) {
 //   sdk = { get(pathname, { access:'private', useCache:false }), put(pathname, body, { access:'private', addRandomSuffix:false, allowOverwrite, ifMatch, contentType }) }
 // UNVERIFIED against the live SDK: result shapes of get() (stream/etag field names) and error names; checked only by stubs.
 export function createBlobStore({ sdk, pathname = 'fineprint/budget-ledger.json' }) {
-  const isConflict = (e) => /BlobPreconditionFailed|BlobAlreadyExists/i.test(e?.name || '') || /precondition|already exists|412/i.test(e?.message || '');
+  const isConflict = (e) => /BlobPreconditionFailed|BlobAlreadyExists/i.test(e?.name || '') || /precondition|already exists|412|conditional request.*conflicting operation/i.test(e?.message || '');
   const base = { access: 'private', addRandomSuffix: false, contentType: 'application/json' };
   return {
     async get() {

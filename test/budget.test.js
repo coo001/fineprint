@@ -91,3 +91,9 @@ test('every LIVE model request (including the response_format retry) reserves fi
   const none = makeLLM(getConfig({ NEBIUS_API_KEY: 'k' }), { fetchImpl: () => { throw new Error('must not be called'); }, reserveBudget: async () => { throw new BudgetError('Global LIVE budget reached.', 'exhausted', 429); } });
   await assert.rejects(none.chat({ tier: 'deep', step: 't', system: 's', user: 'u' }), /budget reached/);
 });
+
+test('actual Blob conditional-conflict message is normalized for safe CAS retry', async () => {
+  const sdk = { put: async () => { throw new Error('Vercel Blob: The conditional request cannot succeed due to a conflicting operation against this resource.'); } };
+  const store = createBlobStore({ sdk });
+  await assert.rejects(store.update({ reservedMicro: 1, calls: 1 }, 'old-etag'), error => error instanceof ConflictError);
+});
