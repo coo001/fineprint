@@ -45,7 +45,7 @@ Requires Node.js 20 or newer. The optional public deployment uses @vercel/blob f
 ```bash
 cp .env.example .env      # add NEBIUS_API_KEY (and optionally TAVILY_API_KEY)
 npm start                 # http://127.0.0.1:3456
-npm test                  # 39 tests, no model calls needed
+npm test                  # 40 tests, no model calls needed
 ```
 
 CLI:
@@ -59,15 +59,6 @@ node bin/check.js https://nebiusglobalaihackathon.devpost.com/rules https://nebi
 ### MOCK mode
 
 Without `NEBIUS_API_KEY` the app runs in **MOCK mode**: the three model steps are answered by rule-based stand-ins in `src/mock.js` that return the same JSON shapes, the three Nebius × NVIDIA hackathon pages are read from `fixtures/pages/`, and the sample repositories `sample-builder/draft-agent` and `sample-builder/fixed-agent` come from `fixtures/github/` (sample data, not real repositories). The UI shows a yellow MOCK badge and labels token counts as estimates. MOCK mode exists so the app and its tests run offline; the results judges should look at are from LIVE mode.
-
-## Public demo safety
-
-- **Default OFF for LIVE on a public deployment.** When `VERCEL` or `FINEPRINT_PUBLIC=1` is set the app answers in **MOCK** (clearly badged, free, no model/Tavily call) unless a request carries the secret header `x-demo-token` AND the server has `NEBIUS_API_KEY`, `FINEPRINT_ENABLE_LIVE=1`, `FINEPRINT_DEMO_TOKEN` (16+ chars) and `BLOB_READ_WRITE_TOKEN` (global spend ledger). Anyone can use MOCK without logging in. Locally (not public) a key still means LIVE.
-- **Global spend ledger (`src/budget.js`).** Before every LIVE model request the server reserves a conservative dollar cost (UTF-8 bytes of the prompt at the input price + max output tokens at the output price) in a Vercel Blob object using ETag compare-and-swap writes. Conflict, storage error, unreadable ledger or cap reached means no model call (fail closed). Reservations are not refunded. Cap: `FINEPRINT_LEDGER_CAP_USD` (default 0.75).
-- **What is only per-instance.** The concurrency cap, per-IP rate limit and the daily run/token counters (`src/safety.js`) live in memory. On serverless they are per instance and reset on restart, so they are abuse dampers, not a spending guarantee. The dollar ledger is the only global cost limit.
-- **SSRF.** User URLs must be http(s) on ports 80/443, no credentials, no localhost/internal names, and every DNS answer must be a public address (loopback, private, link-local incl. 169.254.169.254, CGNAT, mapped/NAT64/6to4 IPv6 are blocked). Redirects are followed manually and re-checked (max 3). Known gap: the name is resolved once for the check and again by `fetch`, so a DNS-rebinding host could still slip through; Node's built-in fetch cannot pin the address.
-- **Caps.** Fetch: 8 s, 1.5 MB, text types only. Request body 20 KB, 4 URLs of at most 300 chars, entry fields at most 2000 chars, source text 60k chars each / 120k total. Per check: 26 model calls, 90k chars per call, 6000 output tokens per call, 200k estimated tokens, 110 s overall; each model call also times out after 60 s.
-- All numbers can be overridden with `LIMIT_*` env vars (see `src/config.js`).
 
 ## Project layout
 
@@ -97,7 +88,7 @@ MIT, see [LICENSE](LICENSE).
 
 The hosted app defaults to a clearly labeled offline sample. Judges can enter the access code supplied in the submission testing instructions to run actual Nemotron calls. The API pre-reserves a conservative per-request upper bound in a private Vercel Blob object using ETag conditional writes. All instances share a USD 0.65 reservation cap. Storage errors, conflicts or exhausted budget fail closed. There are also per-instance rate, input, redirect, time and output limits. These limits are safety controls, not a promise of availability beyond the provider trial-credit expiry. The recorded LIVE run remains viewable without a key and is explicitly labeled as recorded.
 
-Set VERCEL=1 or FINEPRINT_PUBLIC=1, NEBIUS_API_KEY, FINEPRINT_ENABLE_LIVE=1, FINEPRINT_DEMO_TOKEN (at least 16 characters), BLOB_READ_WRITE_TOKEN and LIMIT_REQUEST_TIMEOUT_MS=55000 for public hosting. Never commit these values. In-memory rate counters reset between instances; only the Blob budget cap is global and durable. DNS rebinding is not fully prevented by the built-in fetch prechecks; use only public official contest URLs.
+Set VERCEL=1 or FINEPRINT_PUBLIC=1, NEBIUS_API_KEY, FINEPRINT_ENABLE_LIVE=1, FINEPRINT_DEMO_TOKEN (at least 16 characters), BLOB_READ_WRITE_TOKEN and LIMIT_REQUEST_TIMEOUT_MS=220000 for public hosting. Never commit these values. In-memory rate counters reset between instances; only the Blob budget cap is global and durable. DNS rebinding is not fully prevented by the built-in fetch prechecks; use only public official contest URLs.
 
 ## Verification
 
